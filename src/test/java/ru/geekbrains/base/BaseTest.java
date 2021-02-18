@@ -1,4 +1,4 @@
-package ru.geekbrains.uploadimg;
+package ru.geekbrains.base;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,7 +27,7 @@ public abstract class BaseTest {
 
     private static void loadProperties() {
         try {
-            prop.load(new FileInputStream("src/test/resources/application.properties"));
+            prop.load(new FileInputStream("src/test/resources/test_api.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

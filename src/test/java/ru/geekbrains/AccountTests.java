@@ -1,7 +1,7 @@
 package ru.geekbrains;
 
 import org.junit.jupiter.api.Test;
-import ru.geekbrains.uploadimg.BaseTest;
+import ru.geekbrains.base.BaseTest;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
