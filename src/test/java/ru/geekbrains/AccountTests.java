@@ -15,8 +15,6 @@ public class AccountTests extends BaseTest {
     void getAccountInfoTest() {
         given()
                 .headers("Authorization", token)
-//                .headers(headers)
-                .headers(headers)
                 .when()
                 .get("/account/{username}", username)
                 .then()
@@ -30,7 +28,7 @@ public class AccountTests extends BaseTest {
                 .log()
                 .all()
                 .when()
-                .get("https://api.imgur.com/3/account/testprogmath")
+                .get("https://api.imgur.com/3/account/{username}", username)
                 .prettyPeek()
                 .then()
                 .statusCode(200);
@@ -39,9 +37,9 @@ public class AccountTests extends BaseTest {
     @Test
     void getAccountInfoWithoutToken() {
                 when()
-                .get("https://api.imgur.com/3/account/testprogmath")
+                .get("https://api.imgur.com/3/account/{username}", username)
                 .then()
-                .statusCode(200);
+                .statusCode(401);
     }
 
     @Test
@@ -51,9 +49,7 @@ public class AccountTests extends BaseTest {
                 .log()
                 .uri()
                 .when()
-                .get("https://api.imgur.com/3/account/testprogmath")
-             //   .prettyPeek()
-                .prettyPeek()
+                .get("https://api.imgur.com/3/account/{username}", username)
                 .then()
                 .statusCode(200)
                 .contentType("application/json")
@@ -76,9 +72,7 @@ public class AccountTests extends BaseTest {
                 .body("success", is(true))
                 .body("data.url", is("testprogmath"))
                 .when()
-                .get("https://api.imgur.com/3/account/testprogmath")
-                //   .prettyPeek()
-                .prettyPeek()
+                .get("https://api.imgur.com/3/account/{username}", username)
                 .then()
                 .statusCode(200)
                 .contentType("application/json")

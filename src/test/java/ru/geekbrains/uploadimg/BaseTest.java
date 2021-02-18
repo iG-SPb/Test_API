@@ -23,8 +23,6 @@ public abstract class BaseTest {
 
         RestAssured.baseURI = prop.getProperty("base.url");
         username = prop.getProperty("username");
-//        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 
     private static void loadProperties() {
