@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class ImageTests extends BaseTest{
+public class ImageTests extends BaseGetTest {
 
     String encodedImage;
     String uploadedImageHashCode;
@@ -57,7 +57,7 @@ public class ImageTests extends BaseTest{
 
     private byte[] getFileContentInBase64() {
         ClassLoader classLoader = getClass().getClassLoader();
-        File inputFile = new File(Objects.requireNonNull(classLoader.getResource("avatar.jpg")).getFile());
+        File inputFile = new File(Objects.requireNonNull(classLoader.getResource("baseImage.jpg")).getFile());
         byte[] fileContent = new byte[0];
         try {
             fileContent =   FileUtils.readFileToByteArray(inputFile);
