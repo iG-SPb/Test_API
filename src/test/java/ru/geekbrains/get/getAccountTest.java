@@ -1,6 +1,8 @@
 package ru.geekbrains.get;
 
 import static org.hamcrest.CoreMatchers.*;
+
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.base.BaseGetTest;
 import static io.restassured.RestAssured.baseURI;
@@ -9,6 +11,7 @@ import static io.restassured.RestAssured.given;
 public class getAccountTest extends BaseGetTest {
 
     @Test
+    @Step("test GET")
     void getAccountInfoPositiveTest() {
         given()
                 .log()

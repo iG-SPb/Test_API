@@ -1,5 +1,7 @@
 package ru.geekbrains.base;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -17,12 +19,13 @@ public abstract class BaseGetTest {
     protected static String baseImage;
 
     @BeforeAll
+    @Step("test Get Base")
     static void beforeAll() {
         readPropertiesFromFile();
         username = properties.getProperty("username");
         token = properties.getProperty("token");
         RestAssured.baseURI = properties.getProperty("base.url");
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        RestAssured.filters(new AllureRestAssured());
         baseImage = properties.getProperty("baseImage");
     }
 

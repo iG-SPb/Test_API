@@ -1,5 +1,6 @@
 package ru.geekbrains.put;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.base.BasePostTest;
 
@@ -13,6 +14,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class postImageTest extends BasePostTest {
 
     @Test
+    @Step("test PUT-1")
     void putImagePositiveTest() {
         hashImage = given()
                 .baseUri(baseURI)
@@ -33,6 +35,7 @@ public class postImageTest extends BasePostTest {
     }
 
     @Test
+    @Step("test PUT-2")
     void putImagePositiveFileTest() {
         hashImage = given()
                 .baseUri(baseURI)

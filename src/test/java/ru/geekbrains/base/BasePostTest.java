@@ -1,5 +1,7 @@
 package ru.geekbrains.base;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,16 +25,19 @@ public abstract class BasePostTest {
     protected static String baseImage;
 
     @BeforeAll
+    @Step("test PUT before")
     static void beforeAll() {
         readPropertiesFromFile();
         username = properties.getProperty("username");
         token = properties.getProperty("token");
         RestAssured.baseURI = properties.getProperty("base.url");
+        RestAssured.filters(new AllureRestAssured());
         baseImageHash = properties.getProperty("baseImageHash");
         baseImage = properties.getProperty("baseImage");
     }
 
     @AfterEach
+    @Step("test PUT after")
     void tearDown() {
         given()
                 .headers("Authorization", token)
