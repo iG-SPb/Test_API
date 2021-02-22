@@ -29,7 +29,9 @@ public abstract class BaseApiTest {
     public static String hashImage;
     public static Boolean imageloadingFlag;
     protected static String baseImageHash;
+    protected static String imgurImagePath;
     protected static String baseImage;
+    public static Integer identifier;
     public static ResponseSpecification responseSpecGet = null;
     public static ResponseSpecification responseSpecPostPositive = null;
     public static ResponseSpecification responseSpecPostNegative = null;
@@ -45,6 +47,7 @@ public abstract class BaseApiTest {
         RestAssured.baseURI = properties.getProperty("base.url");
         RestAssured.filters(new AllureRestAssured());
         baseImageHash = properties.getProperty("baseImageHash");
+        imgurImagePath = properties.getProperty("imgurImagePath");
         baseImage = properties.getProperty("baseImage");
         imageloadingFlag = FALSE;
         responseSpecGet = new ResponseSpecBuilder()

@@ -32,8 +32,8 @@ public class getTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(GetResponseAccountBase.class);
-        assertThat(resp.getData().getId(), equalTo(145270851));
-        assertThat(resp.getData().getUrl(), equalTo("testprogmath"));
+        identifier = resp.getData().getId();
+        assertThat(resp.getData().getUrl(), equalTo(username));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class getTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(GetResponseAccountSettings.class);
-        assertThat(resp.getData().getAccountUrl(), equalTo("testprogmath"));
+        assertThat(resp.getData().getAccountUrl(), equalTo(username));
     }
 
     @Test
@@ -71,8 +71,8 @@ public class getTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(GetResponseCredit.class);
-        assertThat(resp.getData().getUserLimit(), allOf(greaterThan(10)));
-        assertThat(resp.getData().getClientLimit(), allOf(greaterThan(10)));
+        assertThat(resp.getData().getUserLimit(), allOf(greaterThan(0)));
+        assertThat(resp.getData().getClientLimit(), allOf(greaterThan(0)));
     }
 
     @Test
@@ -91,8 +91,8 @@ public class getTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(GetResponseImage.class);
-        assertThat(resp.getData().getLink(), equalTo("https://i.imgur.com/kcuyo7c.jpg"));
-        assertThat(resp.getData().getAccountId(), equalTo(145270851));
-        assertThat(resp.getData().getId(), equalTo("kcuyo7c"));
+        assertThat(resp.getData().getLink(), equalTo(imgurImagePath));
+        assertThat(resp.getData().getAccountId(), equalTo(identifier));
+        assertThat(resp.getData().getId(), equalTo(baseImageHash));
     }
 }

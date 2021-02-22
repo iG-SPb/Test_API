@@ -40,7 +40,7 @@ public class postImageTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(PostResponseImage.class);
-        assertThat(resp.getData().getAccountId(), equalTo(145270851));
+        assertThat(resp.getData().getAccountId(), equalTo(identifier));
         assertThat(resp.getData().getSize(), allOf(greaterThan(0)));
         hashImage = resp.getData().getDeletehash();
         imageloadingFlag = TRUE;
@@ -66,7 +66,5 @@ public class postImageTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(PostResponseNegative.class);
-        assertThat(resp.getData().getMethod(), equalTo("POST"));
-        assertThat(resp.getData().getRequest(), equalTo("/3/image"));
     }
 }
