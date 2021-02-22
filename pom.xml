@@ -53,8 +53,7 @@
                 <version>${allure-maven.version}</version>
                 <configuration>
                     <reportVersion>2.4.1</reportVersion>
-                    <resultsDirectory>allure-results</resultsDirectory>
-                    <resultsDirectory>allure-results</resultsDirectory>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>
