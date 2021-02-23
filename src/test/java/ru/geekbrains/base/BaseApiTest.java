@@ -11,11 +11,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import ru.geekbrains.utils.PropertiesUtils;
 import ru.geekbrains.utils.TestEndpoints;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
-
 import static io.restassured.RestAssured.given;
 import static java.lang.Boolean.FALSE;
 import static org.hamcrest.Matchers.containsString;
@@ -31,7 +29,7 @@ public abstract class BaseApiTest {
     protected static String baseImageHash;
     protected static String imgurImagePath;
     protected static String baseImage;
-    public static Integer identifier;
+    public static Integer identifier = 145270851;
     public static ResponseSpecification responseSpecGet = null;
     public static ResponseSpecification responseSpecPostPositive = null;
     public static ResponseSpecification responseSpecPostNegative = null;

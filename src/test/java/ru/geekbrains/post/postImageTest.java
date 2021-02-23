@@ -7,13 +7,10 @@ import ru.geekbrains.base.BaseApiTest;
 import ru.geekbrains.dto.PostResponseNegative;
 import ru.geekbrains.utils.FileEncodingUtils;
 import ru.geekbrains.utils.TestEndpoints;
-
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import static io.restassured.RestAssured.*;
 import static java.lang.Boolean.TRUE;
-
 import ru.geekbrains.dto.PostResponseImage;
 import ru.geekbrains.utils.TestImagesNegative;
 import ru.geekbrains.utils.TestImagesPositive;
