@@ -71,8 +71,8 @@ public class getTest extends BaseApiTest {
                 .extract()
                 .body()
                 .as(GetResponseCredit.class);
-        assertThat(resp.getData().getUserLimit(), allOf(greaterThan(0)));
-        assertThat(resp.getData().getClientLimit(), allOf(greaterThan(0)));
+        assertThat(resp.getData().getUserLimit(), allOf(greaterThan(userLimit)));
+        assertThat(resp.getData().getClientLimit(), allOf(greaterThan(clientLimit)));
     }
 
     @Test

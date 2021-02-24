@@ -30,9 +30,18 @@ public abstract class BaseApiTest {
     protected static String imgurImagePath;
     protected static String baseImage;
     public static Integer identifier = 145270851;
+    protected static Integer userLimit =0;
+    protected static Integer clientLimit =0;
+    protected static String parameters_image;
+    protected static String parameters_authorization;
+    protected static String positiveStatusLine;
+    protected static String positiveBodyString;
+    protected static String negativeBodyString;
+    protected static String negativeString;
     public static ResponseSpecification responseSpecGet = null;
     public static ResponseSpecification responseSpecPostPositive = null;
     public static ResponseSpecification responseSpecPostNegative = null;
+    public static ResponseSpecification responseSpecDeleteNegative = null;
     public static RequestSpecification requestSpecGet = null;
     public static RequestSpecification requestSpecPost = null;
 
@@ -47,30 +56,48 @@ public abstract class BaseApiTest {
         baseImageHash = properties.getProperty("baseImageHash");
         imgurImagePath = properties.getProperty("imgurImagePath");
         baseImage = properties.getProperty("baseImage");
+        parameters_image = properties.getProperty("parameters_image");
+        parameters_authorization = properties.getProperty("parameters_authorization");
+        positiveStatusLine = properties.getProperty("positiveStatusLine");
+        positiveBodyString = properties.getProperty("positiveBodyString");
+        negativeBodyString = properties.getProperty("negativeBodyString");
+        negativeString = properties.getProperty("negativeString");
+        try {
+            userLimit = Integer.valueOf(properties.getProperty("userLimit"));
+            clientLimit = Integer.valueOf(properties.getProperty("clientLimit"));
+        }catch (NumberFormatException e) {
+            System.err.println("Неправильный формат строки!");
+        }
+
         imageloadingFlag = FALSE;
         responseSpecGet = new ResponseSpecBuilder()
                 .expectStatusCode(200)
-                .expectStatusLine("HTTP/1.1 200 OK")
+                .expectStatusLine(positiveStatusLine)
                 .expectResponseTime(Matchers.lessThan(3000L))
-                .expectBody(containsString("success\":true"))
+                .expectBody(containsString(positiveBodyString))
                 .build();
         responseSpecPostPositive = new ResponseSpecBuilder()
                 .expectStatusCode(200)
-                .expectStatusLine("HTTP/1.1 200 OK")
+                .expectStatusLine(positiveStatusLine)
                 .expectResponseTime(Matchers.lessThan(20000L))
-                .expectBody(containsString("success\":true"))
+                .expectBody(containsString(positiveBodyString))
                 .build();
         responseSpecPostNegative = new ResponseSpecBuilder()
                 .expectStatusCode(400)
                 .expectResponseTime(Matchers.lessThan(9000L))
-                .expectBody(containsString("success\":false"))
-                .expectBody(containsString("error"))
+                .expectBody(containsString(negativeBodyString))
+                .expectBody(containsString(negativeString))
+                .build();
+        responseSpecDeleteNegative = new ResponseSpecBuilder()
+                .expectResponseTime(Matchers.lessThan(9000L))
+                .expectBody(containsString(negativeBodyString))
+                .expectBody(containsString(negativeString))
                 .build();
         requestSpecGet = new RequestSpecBuilder()
-                .addHeader("Authorization", token)
+                .addHeader(parameters_authorization, token)
                 .build();
         requestSpecPost = new RequestSpecBuilder()
-                .addHeader("Authorization", token)
+                .addHeader(parameters_authorization, token)
                 .build();
     }
 
